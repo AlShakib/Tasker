@@ -38,6 +38,7 @@ import dev.alshakib.tasker.Tasker;
 
 public class MainActivity extends AppCompatActivity {
     private final String LOG_TAG = this.getClass().getSimpleName();
+
     private ImageView resultImageView;
     private ProgressBar progressBar;
     private TextView resultTextView;
@@ -53,10 +54,17 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClickTryMe(View view) {
         Tasker tasker = new Tasker();
+
+        // Add task to execute.
+        // Here Bitmap is the result type.
+        // We want to download an image in the background
+        // then convert that image to bitmap
+        // and set that bitmap to an ImageView.
         tasker.executeAsync(new Tasker.Task<Bitmap>() {
             @Override
             protected void onPreExecute() {
-                // Show progress bar
+
+                // Show progress bar before start downloading.
                 progressBar.setVisibility(View.VISIBLE);
                 resultTextView.setVisibility(View.GONE);
                 resultImageView.setVisibility(View.GONE);
@@ -64,7 +72,9 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             protected Bitmap doInBackground() {
+
                 // Download image in the background
+                // and convert it to Bitmap as result
                 Bitmap result = null;
                 try {
                     URL ImageUrl = new URL(getResources().getString(R.string.image_url));
@@ -83,8 +93,10 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             protected void onPostExecute(Bitmap result) {
-                // Background job is completed.
-                // Set result bitmap to the image view
+
+                // When doInBackground method is completed,
+                // this method is going to be called.
+                // Here we will set result to the image view
                 progressBar.setVisibility(View.GONE);
                 if (result != null) {
                     resultImageView.setVisibility(View.VISIBLE);
