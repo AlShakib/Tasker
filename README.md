@@ -30,7 +30,7 @@ Add it in your root `build.gradle` at the end of repositories:
 allprojects {
 	repositories {
 		...
-		maven { url 'https://jitpack.io' }
+		maven { url "https://jitpack.io" }
 	}
 }
 ```
@@ -39,7 +39,7 @@ allprojects {
 
 ```java
 dependencies {
-	implementation 'com.gitlab.AlShakib:tasker:1.0.0'
+	implementation "com.gitlab.AlShakib:tasker:1.0.0"
 }
 ```
 
