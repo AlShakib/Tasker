@@ -28,7 +28,7 @@ android {
         minSdkVersion 14
         targetSdkVersion 29
         versionCode rootProject.tasker_version_code
-        versionName "tasker_version"
+        versionName "$tasker_version"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
