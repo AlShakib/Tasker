@@ -26,20 +26,19 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-
 public class Tasker {
     private final Handler handler;
     private final Executor executor;
 
     public Tasker() {
-        handler = new Handler(Looper.getMainLooper());
-        executor = Executors.newCachedThreadPool();
+        this.handler = new Handler(Looper.getMainLooper());
+        this.executor = Executors.newCachedThreadPool();
     }
 
     public <R> void executeAsync(Task<R> task) {
         try {
             task.onPreExecute();
-            executor.execute(new RunnableTask<R>(handler, task));
+            executor.execute(new RunnableTask<>(handler, task));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -58,7 +57,7 @@ public class Tasker {
         public void run() {
             try {
                 final R result = task.call();
-                handler.post(new RunnableTaskForHandler<R>(task, result));
+                handler.post(new RunnableTaskForHandler<>(task, result));
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -66,8 +65,8 @@ public class Tasker {
     }
 
     private static class RunnableTaskForHandler<R> implements Runnable {
-        private Task<R> task;
-        private R result;
+        private final Task<R> task;
+        private final R result;
 
         public RunnableTaskForHandler(Task<R> task, R result) {
             this.task = task;
