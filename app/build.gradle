@@ -27,8 +27,8 @@ android {
         applicationId "dev.alshakib.tasker.example"
         minSdkVersion 14
         targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        versionCode rootProject.tasker_version_code
+        versionName "tasker_version"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

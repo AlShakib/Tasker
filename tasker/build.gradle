@@ -24,10 +24,10 @@ android {
     buildToolsVersion "30.0.0"
 
     defaultConfig {
-        minSdkVersion 14
+        minSdkVersion 9
         targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        versionCode rootProject.tasker_version_code
+        versionName "tasker_version"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
