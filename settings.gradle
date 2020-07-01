@@ -1,0 +1,3 @@
+include ':tasker'
+include ':app'
+rootProject.name = "Tasker"
