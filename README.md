@@ -41,7 +41,7 @@ allprojects {
 
 ```java
 dependencies {
-	implementation "com.gitlab.AlShakib:tasker:1.0.0"
+	implementation "com.gitlab.AlShakib:tasker:1.0.1"
 }
 ```
 
@@ -64,7 +64,7 @@ dependencies {
 <dependency>
     <groupId>com.gitlab.AlShakib</groupId>
     <artifactId>tasker</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 

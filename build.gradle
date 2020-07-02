@@ -20,8 +20,8 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     ext {
-        tasker_version = "1.0.0"
-        tasker_version_code = 1
+        tasker_version = "1.0.1"
+        tasker_version_code = 2
 
         androidx_appcompat_version = '1.1.0'
         androidx_constraintlayout_version = '1.1.3'
