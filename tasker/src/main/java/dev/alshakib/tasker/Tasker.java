@@ -80,9 +80,9 @@ public class Tasker {
     }
 
     public abstract static class Task<R> implements Callable<R> {
-        protected abstract void onPreExecute();
+        protected void onPreExecute() {}
         protected abstract R doInBackground();
-        protected abstract void onPostExecute(R result);
+        protected void onPostExecute(R result) {}
 
         @Override
         public R call() {
