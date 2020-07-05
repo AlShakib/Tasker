@@ -18,6 +18,32 @@
  */
 
 apply plugin: 'com.android.library'
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'com.github.dcendents.android-maven'
+
+ext {
+    bintrayRepo = "Tasker"
+    bintrayName = "dev.alshakib.tasker"
+
+    publishedGroupId = 'dev.alshakib.tasker'
+    artifact = 'tasker'
+    libraryName = 'tasker'
+
+    libraryDescription = 'An AsyncTask Alternative.'
+
+    siteUrl = 'https://gitlab.com/AlShakib/tasker'
+    gitUrl = 'https://gitlab.com/AlShakib/tasker.git'
+
+    libraryVersion = "$tasker_version"
+
+    developerId = 'AlShakib'
+    developerName = 'Al Shakib'
+    developerEmail = 'shakib@alshakib.dev'
+
+    licenseName = 'GNU GENERAL PUBLIC LICENSE, Version 3.0'
+    licenseUrl = 'https://www.gnu.org/licenses'
+    allLicenses = ["GPL-3.0"]
+}
 
 android {
     compileSdkVersion 29
@@ -47,5 +73,15 @@ dependencies {
     testImplementation "junit:junit:$junit_version"
     androidTestImplementation "androidx.test.ext:junit:$androidx_test_junit_version"
     androidTestImplementation "androidx.test.espresso:espresso-core:$androidx_test_espresso_core_version"
+}
 
+repositories {
+    mavenCentral()
+}
+
+//Add these lines to publish library to bintray. This is the readymade scripts made by github user nuuneoi to make uploading to bintray easy.
+//Place it at the end of the file
+if (project.rootProject.file('local.properties').exists()) {
+    apply from: 'install.gradle'
+    apply from: 'bintray.gradle'
 }
