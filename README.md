@@ -4,7 +4,7 @@
 
 # Tasker - An [AsyncTask](https://developer.android.com/reference/android/os/AsyncTask) Alternative
 
-`Tasker` is intended to enable proper and easy use of the UI and the background thread. `AsyncTask` is going to be deprecated in API level 30. Android reference suggests to use the standard `java.util.concurrent` class as alternative ([more here](https://developer.android.com/reference/android/os/AsyncTask)). `Tasker` is a wrapper class of `java.util.concurrent` to run computation in the background thread and publish the result in the UI thread. The source code is published under GPLv3 and the license is available [here](LICENSE).
+`Tasker` is intended to enable proper and easy use of the UI and the background thread. `AsyncTask` is going to be deprecated in API level 30. Android reference suggests to use the standard `java.util.concurrent` class as alternative ([more here](https://developer.android.com/reference/android/os/AsyncTask)). `Tasker` is a wrapper class of `java.util.concurrent` to run computation in the background thread and publish the result in the UI thread. The source code is published under GPLv3 and the license is available [here](LICENSE). An article about `Tasker` is available [here](https://alshakib.dev/blog/let_me_introduce_tasker-18-07-2020).
 
 ## Table of Contents
 
@@ -72,11 +72,11 @@ dependencies {
 
 ### Usages
 
-You create an `Tasker`  object, and pass a `Tasker.Task<Result>` object to the `executeAsync()` method.
+For basic usages, you'll need to create a `Tasker`  object, and pass a `Tasker.Task<Result>` object to the `executeAsync()` method.
 
-You create an `Tasker.Task<Result>` class by extending the `Tasker.Task<Result>` class, and implementing its `doInBackground()` method. The code in this method runs in a background thread, so it's the perfect place for you to put your code for a heavy job. The `Tasker.Task<Result>` class also has an `onPreExecute()` method that runs before `doInBackground()` and an `onPostExecute()` method that runs afterward.
+You can create a `Tasker.Task<Result>` class by extending the `Tasker.Task<Result>` class, and implementing its `doInBackground()` method. The code in this method runs in a background thread, so it's the perfect place for you to put your code for a heavy job. The `Tasker.Task<Result>` class also has an `onPreExecute()` method that runs before `doInBackground()` and an `onPostExecute()` method that runs afterward.
 
-`Tasker.Task` is defined by a generic parameter: Result which is the type of the task result. You can set this to `Void` if you're not going to use it.
+`Tasker.Task` is defined by a generic parameter: Result which is the type of the task result. You can set this to Void if you're not going to use it.
 
 ```java
 class MyTask extends Tasker.Task<Result> {
