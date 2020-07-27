@@ -1,6 +1,6 @@
 ![Android DText Library](docs/assets/tasker_cover.png)
 
-[![](https://jitpack.io/v/com.gitlab.AlShakib/tasker.svg)](https://jitpack.io/#com.gitlab.AlShakib/tasker)
+[ ![Download](https://api.bintray.com/packages/alshakib/Tasker/dev.alshakib.tasker/images/download.svg) ](https://bintray.com/alshakib/Tasker/dev.alshakib.tasker/_latestVersion)
 
 # Tasker - An [AsyncTask](https://developer.android.com/reference/android/os/AsyncTask) Alternative
 
@@ -32,47 +32,20 @@ An `Tasker` lets you perform operations in the background. When they've finished
 
 #### For Gradle:
 
-**Step 1.** Add the `JitPack` repository to your build file
-
-Add it in your root `build.gradle` at the end of repositories:
-
-```Java
-allprojects {
-	repositories {
-		...
-		maven { url "https://jitpack.io" }
-	}
-}
-```
-
-**Step 2.** Add the dependency
-
 ```java
 dependencies {
-	implementation "com.gitlab.AlShakib:tasker:1.0.1"
+	implementation 'dev.alshakib.tasker:tasker:1.0.1'
 }
 ```
 
 #### For Maven:
 
-**Step 1.** Add the `JitPack` repository to your build file
-
-```xml
-<repositories>
-    <repository>
-        <id>jitpack.io</id>
-        <url>https://jitpack.io</url>
-    </repository>
-</repositories>
-```
-
-**Step 2.** Add the dependency
-
 ```xml
 <dependency>
-    <groupId>com.gitlab.AlShakib</groupId>
-    <artifactId>tasker</artifactId>
-    <version>1.0.1</version>
+  <groupId>dev.alshakib.tasker</groupId>
+  <artifactId>tasker</artifactId>
+  <version>1.0.1</version>
+  <type>pom</type>
 </dependency>
 ```
 
