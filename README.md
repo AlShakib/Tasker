@@ -8,7 +8,15 @@
 
 ## Table of Contents
 
-[[_TOC_]]
+- [Supported SDK](#supported-sdk)
+- [Getting Started](#getting-started)
+  - [Installation](#installation)
+    - [For Gradle:](#for-gradle)
+    - [For Maven:](#for-maven)
+  - [Usages](#usages)
+- [Contributing](#contributing)
+- [Thanks to](#thanks-to)
+- [License](#license)
 
 ## Supported SDK
 
