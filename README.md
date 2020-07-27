@@ -34,7 +34,7 @@ An `Tasker` lets you perform operations in the background. When they've finished
 
 ```java
 dependencies {
-	implementation 'dev.alshakib.tasker:tasker:1.0.1'
+    implementation 'dev.alshakib.tasker:tasker:1.0.1'
 }
 ```
 
