@@ -1,6 +1,6 @@
 ![Android DText Library](docs/assets/tasker_cover.png)
 
-[ ![Download](https://api.bintray.com/packages/alshakib/Tasker/dev.alshakib.tasker/images/download.svg) ](https://bintray.com/alshakib/Tasker/dev.alshakib.tasker/_latestVersion)
+[![Download](https://api.bintray.com/packages/alshakib/Tasker/dev.alshakib.tasker/images/download.svg)](https://bintray.com/alshakib/Tasker/dev.alshakib.tasker/_latestVersion)
 
 # Tasker - An [AsyncTask](https://developer.android.com/reference/android/os/AsyncTask) Alternative
 
@@ -22,19 +22,25 @@
 
 The latest version is available for,
 
-* Android SKD 9 and higher
+* Android SKD 14 and higher
 
 ## Getting Started
 
-An `Tasker` lets you perform operations in the background. When they've finished running, it then allows you to update UI in the main thread.
+An `Tasker` object lets you perform operations in the background. When they've finished running, then it allows you to update UI in the main thread.
 
 ### Installation
 
 #### For Gradle:
 
 ```java
+repositories {
+  ...
+  jcenter()
+}
+
 dependencies {
-    implementation 'dev.alshakib.tasker:tasker:1.0.1'
+  ...
+  implementation 'dev.alshakib.tasker:tasker:1.0.1'
 }
 ```
 
@@ -92,8 +98,6 @@ For a practical example, see [here](https://gitlab.com/AlShakib/tasker/blob/mast
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-Please make sure to update tests as appropriate.
 
 ## Thanks to
 
