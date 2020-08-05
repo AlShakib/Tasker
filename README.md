@@ -70,7 +70,7 @@ class MyTask extends Tasker.Task<Result> {
 
     @Override
     protected void onPreExecute() {
-		// Code to run before executing the task.
+        // Code to run before executing the task.
     }
 
     @Override
@@ -81,7 +81,7 @@ class MyTask extends Tasker.Task<Result> {
 
     @Override
     protected void onPostExecute(Result result) {
-		// Code that you want to run when the task is complete.
+        // Code that you want to run when the task is complete.
     }
 }
 ```
@@ -93,7 +93,7 @@ Tasker tasker = new Tasker();
 tasker.executeAsync(new MyTask());
 ```
 
-For a practical example, see [here](https://gitlab.com/AlShakib/tasker/blob/master/app/src/main/java/dev/alshakib/tasker/example/MainActivity.java#L55)
+For a practical example, see [here](https://github.com/AlShakib/Tasker/blob/32f5d02326822c55ea077f37d03ddd497bd8b92f/app/src/main/java/dev/alshakib/tasker/example/MainActivity.java#L55)
 
 ## Contributing
 
@@ -105,6 +105,6 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 ## License
 
-[GNU General Public License v3.0](LICENSE)
+[MIT License](LICENSE)
 
 Copyright © 2020 [Al Shakib](https://alshakib.dev/)
