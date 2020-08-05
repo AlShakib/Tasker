@@ -4,7 +4,7 @@
 
 # Tasker - An [AsyncTask](https://developer.android.com/reference/android/os/AsyncTask) Alternative
 
-`Tasker` is intended to enable proper and easy use of the UI and the background thread. `AsyncTask` is going to be deprecated in API level 30. Android reference suggests to use the standard `java.util.concurrent` class as alternative ([more here](https://developer.android.com/reference/android/os/AsyncTask)). `Tasker` is a wrapper class of `java.util.concurrent` to run computation in the background thread and publish the result in the UI thread. The source code is published under GPLv3 and the license is available [here](LICENSE). An article about `Tasker` is available [here](https://alshakib.dev/blog/let_me_introduce_tasker-18-07-2020).
+`Tasker` is intended to enable proper and easy use of the UI and the background thread. `AsyncTask` is going to be deprecated in API level 30. Android reference suggests to use the standard `java.util.concurrent` class as alternative ([more here](https://developer.android.com/reference/android/os/AsyncTask)). `Tasker` is a wrapper class of `java.util.concurrent` to run computation in the background thread and publish the result in the UI thread. The source code is published under MIT License and the license is available [here](LICENSE). An article about `Tasker` is available [here](https://alshakib.dev/blog/let_me_introduce_tasker-18-07-2020).
 
 ## Table of Contents
 
