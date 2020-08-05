@@ -28,6 +28,6 @@
 <resources>
     <string name="app_name">Tasker</string>
     <string name="try_me_button">Try me!</string>
-    <string name="image_url">https://gitlab.com/AlShakib/tasker/raw/master/app/src/main/ic_launcher-playstore.png</string>
+    <string name="image_url">https://raw.githubusercontent.com/AlShakib/Tasker/master/app/src/main/ic_launcher-playstore.png</string>
     <string name="result_error">Can not download image. Try again.</string>
 </resources>
