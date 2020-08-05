@@ -37,10 +37,10 @@ ext {
     artifact = 'tasker'
     libraryName = 'tasker'
 
-    libraryDescription = 'An AsyncTask Alternative.'
+    libraryDescription = 'Tasker is intended to enable proper and easy use of the UI and background thread. It lets you perform operations in the background. When they’ve finished running, it then allows you to update views in the main event thread.'
 
-    siteUrl = 'https://gitlab.com/AlShakib/tasker'
-    gitUrl = 'https://gitlab.com/AlShakib/tasker.git'
+    siteUrl = 'https://github.com/AlShakib/Tasker'
+    gitUrl = 'https://github.com/AlShakib/Tasker.git'
 
     libraryVersion = "$tasker_version"
 
@@ -48,9 +48,9 @@ ext {
     developerName = 'Al Shakib'
     developerEmail = 'shakib@alshakib.dev'
 
-    licenseName = 'GNU GENERAL PUBLIC LICENSE, Version 3.0'
-    licenseUrl = 'https://www.gnu.org/licenses'
-    allLicenses = ["GPL-3.0"]
+    licenseName = 'MIT License'
+    licenseUrl = 'https://github.com/AlShakib/Tasker/blob/master/LICENSE'
+    allLicenses = ["MIT"]
 }
 
 android {
