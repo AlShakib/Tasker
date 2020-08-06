@@ -93,7 +93,7 @@ Tasker tasker = new Tasker();
 tasker.executeAsync(new MyTask());
 ```
 
-For a practical example, see [here](https://github.com/AlShakib/Tasker/blob/32f5d02326822c55ea077f37d03ddd497bd8b92f/app/src/main/java/dev/alshakib/tasker/example/MainActivity.java#L55)
+For a practical example, see [here](https://github.com/AlShakib/Tasker/blob/master/app/src/main/java/dev/alshakib/tasker/example/MainActivity.java).
 
 ## Contributing
 
