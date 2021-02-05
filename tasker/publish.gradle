@@ -1,0 +1,172 @@
+/*
+ * MIT License
+ *
+ * Copyright (c) 2021 Al Shakib (shakib@alshakib.dev)
+ *
+ * This file is part of Tasker
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ *
+ */
+
+ext {
+    // Developer information
+    DEVELOPER_ID = 'AlShakib'
+    DEVELOPER_NAME = 'Al Shakib'
+    DEVELOPER_EMAIL = 'shakib@alshakib.dev'
+
+    // Library information
+    LIBRARY_VERSION = "$project_version_name"
+    LIBRARY_NAME = 'Tasker'
+    LIBRARY_DESCRIPTION = 'Tasker is intended to enable proper and easy use of the UI and background thread. It lets you perform operations in the background. When they’ve finished running, it then allows you to update views in the main event thread.'
+    LIBRARY_WEBSITE_URL = 'https://github.com/AlShakib/Tasker'
+    LIBRARY_VCS_URL = 'https://github.com/AlShakib/Tasker.git'
+    LIBRARY_VCS_BRANCH_URL = 'https://github.com/AlShakib/Tasker/tree/main'
+    LIBRARY_LICENSE_NAME = 'MIT License'
+    LIBRARY_LICENSE_URL = 'https://github.com/AlShakib/Tasker/blob/main/LICENSE'
+
+    // OSS information
+    OSS_GROUP_ID = 'dev.alshakib.tasker'
+    OSS_ARTIFACT_ID = 'tasker'
+}
+
+apply plugin: 'maven-publish'
+apply plugin: 'signing'
+
+task androidSourcesJar(type: Jar) {
+    archiveClassifier.set('sources')
+    from android.sourceSets.main.java.srcDirs
+}
+
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    configurations.implementation.setCanBeResolved(true)
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator)) + configurations.implementation
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    archiveClassifier.set('javadoc')
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives androidSourcesJar
+    archives javadocJar
+}
+
+group = OSS_GROUP_ID
+version = LIBRARY_VERSION
+
+ext['signing.keyId'] = ''
+ext['signing.password'] = ''
+ext['signing.secretKeyRingFile'] = ''
+ext['ossrhUsername'] = ''
+ext['ossrhPassword'] = ''
+
+File secretPropsFile = project.rootProject.file('local.properties')
+if (secretPropsFile.exists()) {
+    Properties p = new Properties()
+    new FileInputStream(secretPropsFile).withCloseable { is ->
+        p.load(is)
+    }
+    p.each { name, value ->
+        ext[name] = value
+    }
+} else {
+    ext['signing.keyId'] = System.getenv('SIGNING_KEY_ID')
+    ext['signing.password'] = System.getenv('SIGNING_PASSWORD')
+    ext['signing.secretKeyRingFile'] = System.getenv('SIGNING_SECRET_KEY_RING_FILE')
+    ext['ossrhUsername'] = System.getenv('OSSRH_USERNAME')
+    ext['ossrhPassword'] = System.getenv('OSSRH_PASSWORD')
+}
+
+afterEvaluate {
+    javadoc.classpath += files(android.libraryVariants.collect {
+        variant -> variant.javaCompileProvider.get().classpath.files
+    })
+
+    publishing {
+        publications {
+            release(MavenPublication) {
+                groupId OSS_GROUP_ID
+                artifactId OSS_ARTIFACT_ID
+                version LIBRARY_VERSION
+
+                if (project.plugins.findPlugin("com.android.library")) {
+                    artifact("$buildDir/outputs/aar/${project.getName()}-release.aar")
+                } else {
+                    artifact("$buildDir/libs/${project.getName()}-${version}.jar")
+                }
+                artifact androidSourcesJar
+
+                pom {
+                    name = LIBRARY_NAME
+                    description = LIBRARY_DESCRIPTION
+                    url = LIBRARY_WEBSITE_URL
+                    licenses {
+                        license {
+                            name = LIBRARY_LICENSE_NAME
+                            url = LIBRARY_LICENSE_URL
+                        }
+                    }
+                    developers {
+                        developer {
+                            id = DEVELOPER_ID
+                            name = DEVELOPER_NAME
+                            email = DEVELOPER_EMAIL
+                        }
+                    }
+                    scm {
+                        connection = LIBRARY_VCS_URL
+                        developerConnection = LIBRARY_VCS_URL
+                        url = LIBRARY_VCS_BRANCH_URL
+                    }
+                    withXml {
+                        def dependenciesNode = asNode().appendNode('dependencies')
+
+                        project.configurations.implementation.allDependencies.each {
+                            def dependencyNode = dependenciesNode.appendNode('dependency')
+                            dependencyNode.appendNode('groupId', it.group)
+                            dependencyNode.appendNode('artifactId', it.name)
+                            dependencyNode.appendNode('version', it.version)
+                        }
+                    }
+                }
+            }
+        }
+        repositories {
+            maven {
+                name = 'sonatype'
+
+                def releasesRepoUrl = 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
+                def snapshotsRepoUrl = 'https://oss.sonatype.org/content/repositories/snapshots/'
+                url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+
+                credentials {
+                    username ossrhUsername
+                    password ossrhPassword
+                }
+            }
+        }
+    }
+
+    signing {
+        sign publishing.publications
+    }
+}

@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2020 Al Shakib (shakib@alshakib.dev)
+ * Copyright (c) 2021 Al Shakib (shakib@alshakib.dev)
  *
  * This file is part of Tasker
  *
@@ -26,70 +26,28 @@
  */
 
 apply plugin: 'com.android.library'
-apply plugin: 'com.jfrog.bintray'
-apply plugin: 'com.github.dcendents.android-maven'
-
-ext {
-    bintrayRepo = "Tasker"
-    bintrayName = "dev.alshakib.tasker"
-
-    publishedGroupId = 'dev.alshakib.tasker'
-    artifact = 'tasker'
-    libraryName = 'tasker'
-
-    libraryDescription = 'Tasker is intended to enable proper and easy use of the UI and background thread. It lets you perform operations in the background. When they’ve finished running, it then allows you to update views in the main event thread.'
-
-    siteUrl = 'https://github.com/AlShakib/Tasker'
-    gitUrl = 'https://github.com/AlShakib/Tasker.git'
-
-    libraryVersion = "$tasker_version"
-
-    developerId = 'AlShakib'
-    developerName = 'Al Shakib'
-    developerEmail = 'shakib@alshakib.dev'
-
-    licenseName = 'MIT License'
-    licenseUrl = 'https://github.com/AlShakib/Tasker/blob/master/LICENSE'
-    allLicenses = ["MIT"]
-}
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.1"
+    compileSdkVersion rootProject.compileSdkVersion
 
     defaultConfig {
-        minSdkVersion 9
-        targetSdkVersion 30
-        versionCode rootProject.tasker_version_code
-        versionName "$tasker_version"
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles "consumer-rules.pro"
+        minSdkVersion rootProject.minSdkVersion
     }
 
     buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        debug {
+            versionNameSuffix = '-SNAPSHOT'
         }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
 dependencies {
-    implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation "androidx.appcompat:appcompat:$androidx_appcompat_version"
-    testImplementation "junit:junit:$junit_version"
-    androidTestImplementation "androidx.test.ext:junit:$androidx_test_junit_version"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$androidx_test_espresso_core_version"
+    implementation 'androidx.appcompat:appcompat:1.2.0'
 }
 
-repositories {
-    mavenCentral()
-}
-
-//Add these lines to publish library to bintray. This is the readymade scripts made by github user nuuneoi to make uploading to bintray easy.
-//Place it at the end of the file
-if (project.rootProject.file('local.properties').exists()) {
-    apply from: 'install.gradle'
-    apply from: 'bintray.gradle'
-}
+apply from: 'publish.gradle'
