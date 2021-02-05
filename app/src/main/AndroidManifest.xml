@@ -2,7 +2,7 @@
 <!--
   ~ MIT License
   ~
-  ~ Copyright (c) 2020 Al Shakib (shakib@alshakib.dev)
+  ~ Copyright (c) 2021 Al Shakib (shakib@alshakib.dev)
   ~
   ~ This file is part of Tasker
   ~
@@ -27,6 +27,7 @@
   -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="dev.alshakib.tasker.example">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -37,11 +38,13 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        android:theme="@style/Theme.Tasker"
+        tools:ignore="AllowBackup">
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/Theme.Tasker.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

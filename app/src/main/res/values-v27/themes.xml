@@ -27,14 +27,16 @@
   -->
 
 <resources>
-    <color name="primary">#3F51B5</color>
-    <color name="highEmphasis">#212121</color>
-    <color name="mediumEmphasis">#656565</color>
-    <color name="disabled">#9C9C9C</color>
-    <color name="error">#B00020</color>
-    <color name="divider">#E2E2E2</color>
-    <color name="transparent">@android:color/transparent</color>
-    <color name="black">#000000</color>
-    <color name="white">#FFFFFF</color>
-    <color name="background">#F8FAFB</color>
+    <style name="Theme.Tasker" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/primary</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/primary</item>
+        <item name="colorSecondaryVariant">@color/primary</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar">true</item>
+        <item name="android:navigationBarColor">@color/transparent</item>
+    </style>
 </resources>

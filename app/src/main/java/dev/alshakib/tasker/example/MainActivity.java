@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2020 Al Shakib (shakib@alshakib.dev)
+ * Copyright (c) 2021 Al Shakib (shakib@alshakib.dev)
  *
  * This file is part of Tasker
  *
@@ -31,9 +31,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -43,21 +40,16 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 import dev.alshakib.tasker.Tasker;
+import dev.alshakib.tasker.example.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
-    private final String LOG_TAG = this.getClass().getSimpleName();
-
-    private ImageView resultImageView;
-    private ProgressBar progressBar;
-    private TextView resultTextView;
+    private ActivityMainBinding viewBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        resultImageView = findViewById(R.id.result_image_view);
-        progressBar = findViewById(R.id.progress_bar);
-        resultTextView = findViewById(R.id.result_text_view);
+        viewBinding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(viewBinding.getRoot());
     }
 
     public void onClickTryMe(View view) {
@@ -73,9 +65,9 @@ public class MainActivity extends AppCompatActivity {
             protected void onPreExecute() {
 
                 // Show progress bar before start downloading.
-                progressBar.setVisibility(View.VISIBLE);
-                resultTextView.setVisibility(View.GONE);
-                resultImageView.setVisibility(View.GONE);
+                viewBinding.progressBar.setVisibility(View.VISIBLE);
+                viewBinding.resultTextView.setVisibility(View.GONE);
+                viewBinding.resultImageView.setVisibility(View.GONE);
             }
 
             @Override
@@ -105,15 +97,15 @@ public class MainActivity extends AppCompatActivity {
                 // When doInBackground method is completed,
                 // this method is going to be called.
                 // Here we will set result to the image view
-                progressBar.setVisibility(View.GONE);
+                viewBinding.progressBar.setVisibility(View.GONE);
                 if (result != null) {
-                    resultImageView.setVisibility(View.VISIBLE);
-                    resultTextView.setVisibility(View.GONE);
-                    resultImageView.setImageBitmap(result);
+                    viewBinding.resultImageView.setVisibility(View.VISIBLE);
+                    viewBinding.resultTextView.setVisibility(View.GONE);
+                    viewBinding.resultImageView.setImageBitmap(result);
                 } else {
-                    resultImageView.setVisibility(View.GONE);
-                    resultTextView.setVisibility(View.VISIBLE);
-                    resultTextView.setText(getResources().getString(R.string.result_error));
+                    viewBinding.resultImageView.setVisibility(View.GONE);
+                    viewBinding.resultTextView.setVisibility(View.VISIBLE);
+                    viewBinding.resultTextView.setText(getResources().getString(R.string.result_error));
                 }
             }
         });
