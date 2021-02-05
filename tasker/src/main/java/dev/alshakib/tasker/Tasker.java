@@ -34,7 +34,7 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
-public class Tasker {
+public final class Tasker {
     private final Handler handler;
     private final Executor executor;
 
@@ -52,7 +52,7 @@ public class Tasker {
         }
     }
 
-    private static class RunnableTask<R> implements Runnable {
+    private static final class RunnableTask<R> implements Runnable {
         private final Handler handler;
         private final Task<R> task;
 
@@ -72,7 +72,7 @@ public class Tasker {
         }
     }
 
-    private static class RunnableTaskForHandler<R> implements Runnable {
+    private static final class RunnableTaskForHandler<R> implements Runnable {
         private final Task<R> task;
         private final R result;
 
