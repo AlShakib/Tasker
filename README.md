@@ -1,6 +1,6 @@
 ![Android DText Library](docs/assets/tasker_cover.png)
 
-[![Download](https://api.bintray.com/packages/alshakib/Tasker/dev.alshakib.tasker/images/download.svg)](https://bintray.com/alshakib/Tasker/dev.alshakib.tasker/_latestVersion)
+[![Maven Central](https://img.shields.io/maven-central/v/dev.alshakib.tasker/tasker.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22dev.alshakib.tasker%22%20AND%20a:%22tasker%22)
 
 # Tasker - An [AsyncTask](https://developer.android.com/reference/android/os/AsyncTask) Alternative
 
@@ -35,12 +35,12 @@ An `Tasker` object lets you perform operations in the background. When they've f
 ```java
 repositories {
   ...
-  jcenter()
+  mavenCentral()
 }
 
 dependencies {
   ...
-  implementation 'dev.alshakib.tasker:tasker:1.0.1'
+  implementation 'dev.alshakib.tasker:tasker:{lastest_version}'
 }
 ```
 
@@ -50,8 +50,8 @@ dependencies {
 <dependency>
   <groupId>dev.alshakib.tasker</groupId>
   <artifactId>tasker</artifactId>
-  <version>1.0.1</version>
-  <type>pom</type>
+  <version>{lastest_version}</version>
+  <type>aar</type>
 </dependency>
 ```
 
