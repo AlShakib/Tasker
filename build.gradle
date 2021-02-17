@@ -30,7 +30,7 @@ buildscript {
     ext {
         // Project versions
         project_version_code = 1
-        project_version_name = '1.0.0-rc1'
+        project_version_name = '1.1.0'
 
         // App SDK versions
         compileSdkVersion = 30
